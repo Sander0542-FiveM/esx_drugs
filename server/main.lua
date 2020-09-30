@@ -58,11 +58,14 @@ AddEventHandler('esx_drugs:pickedUpCannabis', function()
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local cime = math.random(5,10)
 
-	if xPlayer.canCarryItem('cannabis', cime) then
-		xPlayer.addInventoryItem('cannabis', cime)
-	else
-		xPlayer.showNotification(_U('weed_inventoryfull'))
+	for i = cime,1,-1 do
+		if xPlayer.canCarryItem('cannabis', i) then
+			xPlayer.addInventoryItem('cannabis', i)
+			return
+		end
 	end
+	
+	xPlayer.showNotification(_U('weed_inventoryfull'))
 end)
 
 ESX.RegisterServerCallback('esx_drugs:canPickUp', function(source, cb, item)
