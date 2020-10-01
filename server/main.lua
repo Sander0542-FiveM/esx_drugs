@@ -61,7 +61,7 @@ AddEventHandler('esx_drugs:pickedUpCannabis', function()
 	for i = cime,1,-1 do
 		if xPlayer.canCarryItem('cannabis', i) then
 			xPlayer.addInventoryItem('cannabis', i)
-			return
+			do return end
 		end
 	end
 	
